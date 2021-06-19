@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Movie Catalog</string>
+
+    <string name="label_movies">Movies</string>
+    <string name="label_favorite">Favorite</string>
+
+    <string name="label_overview">Overview</string>
+    <string name="label_language">Language</string>
+    <string name="label_country">Origin Country</string>
+    <string name="label_release">Release</string>
+    <string name="empty_favorites">There is no item!</string>
+    <string name="label_sort">Sort</string>
+    <string name="movies_poster_desc">Movies poster</string>
+    <string name="movies_background_desc">Movies background</string>
+    <string name="title_favorite">Favorite</string>
+</resources>
