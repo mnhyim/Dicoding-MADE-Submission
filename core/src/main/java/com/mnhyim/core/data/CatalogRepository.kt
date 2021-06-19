@@ -22,27 +22,27 @@ class CatalogRepository(
     private val executors: Executors
 ) : CatalogRepositoryInterface {
 
-    private val TAG: String = this::class.java.simpleName
+    private val tag: String = this::class.java.simpleName
 
     override fun getAllMovies(): Flow<Resource<List<Movie>>> =
         object : NetworkBoundResource<List<Movie>, List<MovieResponse>>() {
             override fun loadFromDB(): Flow<List<Movie>> {
-                Log.d(TAG, "loadFromDB")
+                Log.d(tag, "loadFromDB")
                 return localDataSource.getAllMoviesFromDB().map { mapEntitiesToDomain(it) }
             }
 
             override fun shouldFetch(data: List<Movie>?): Boolean {
-                Log.d(TAG, "shouldfetch: ${data == null || data.isEmpty()}")
+                Log.d(tag, "shouldfetch: ${data == null || data.isEmpty()}")
                 return data == null || data.isEmpty()
             }
 
             override suspend fun createCall(): Flow<ApiResponse<List<MovieResponse>>> {
-                Log.d(TAG, "createCall")
+                Log.d(tag, "createCall")
                 return remoteDataSource.discoverMovies()
             }
 
             override suspend fun saveCallResult(data: List<MovieResponse>) {
-                Log.d(TAG, "saveCallResult: $data")
+                Log.d(tag, "saveCallResult: $data")
                 val moviesList = mapResponsesToEntities(data)
                 localDataSource.insertMoviesToDB(moviesList)
             }

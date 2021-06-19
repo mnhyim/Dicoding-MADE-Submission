@@ -13,13 +13,13 @@ import kotlinx.coroutines.flow.flowOn
 
 class RemoteDataSource(private val apiService: ApiService) {
 
-    private val TAG: String = this::class.java.simpleName
+    private val tag: String = this::class.java.simpleName
 
     suspend fun discoverMovies(): Flow<ApiResponse<List<MovieResponse>>> =
         flow {
             try {
                 val response = apiService.discoverMovies(API_KEY)
-                Log.d(TAG, "$response")
+                Log.d(tag, "$response")
                 val dataArray = response.results
                 if (dataArray.isNotEmpty()) emit(Success(dataArray)) else emit(Empty)
             } catch (e: Exception) {

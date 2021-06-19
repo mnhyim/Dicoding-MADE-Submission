@@ -20,7 +20,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CatalogActivity : AppCompatActivity() {
 
-    private val TAG: String = this::class.java.simpleName
+    private val tag: String = this::class.java.simpleName
     private val catalogViewModel: CatalogViewModel by viewModel()
     private lateinit var binding: ActivityCatalogBinding
 
@@ -33,20 +33,20 @@ class CatalogActivity : AppCompatActivity() {
         val moviesAdapter = MoviesAdapter()
 
         catalogViewModel.movies.observe(this) {
-            Log.d(TAG, "$it")
+            Log.d(tag, "$it")
             if (it != null) {
                 when (it) {
                     is Resource.Success -> {
-                        Log.d(TAG, "Success: ${it.data}")
+                        Log.d(tag, "Success: ${it.data}")
                         setLoading(false)
                         moviesAdapter.setMovies(it.data)
                     }
                     is Resource.Loading -> {
-                        Log.d(TAG, "Loading")
+                        Log.d(tag, "Loading")
                         setLoading(true)
                     }
                     is Resource.Error -> {
-                        Log.d(TAG, "Error: ${it.message}")
+                        Log.d(tag, "Error: ${it.message}")
                         setLoading(false)
                         Toast.makeText(this, "Error! : ${it.message}", Toast.LENGTH_SHORT).show()
                     }

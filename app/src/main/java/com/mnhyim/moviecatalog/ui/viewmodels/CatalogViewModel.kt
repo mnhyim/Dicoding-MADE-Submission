@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.mnhyim.core.domain.usecase.CatalogUseCase
 
-class CatalogViewModel(private val catalogUseCase: CatalogUseCase) : ViewModel() {
+class CatalogViewModel(catalogUseCase: CatalogUseCase) : ViewModel() {
 
     val movies = catalogUseCase.getAllMovies().asLiveData()
 }

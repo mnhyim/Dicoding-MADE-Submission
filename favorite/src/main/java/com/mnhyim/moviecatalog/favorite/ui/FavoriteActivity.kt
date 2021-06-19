@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mnhyim.core.domain.model.Movie
 import com.mnhyim.core.ui.MoviesAdapter
-import com.mnhyim.moviecatalog.databinding.ActivityFavoriteBinding
+import com.mnhyim.moviecatalog.favorite.databinding.ActivityFavoriteBinding
 import com.mnhyim.moviecatalog.favorite.di.favoriteModule
 import com.mnhyim.moviecatalog.ui.activities.DetailActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -17,7 +17,7 @@ import org.koin.core.context.loadKoinModules
 
 class FavoriteActivity : AppCompatActivity() {
 
-    private val TAG: String = this::class.java.simpleName
+    private val tag: String = this::class.java.simpleName
     private val favoriteViewModel: FavoriteViewModel by viewModel()
     private lateinit var binding: ActivityFavoriteBinding
 
@@ -32,10 +32,13 @@ class FavoriteActivity : AppCompatActivity() {
         val moviesAdapter = MoviesAdapter()
 
         favoriteViewModel.movies.observe(this) {
-            Log.d(TAG, "$it")
-            if (it != null) {
-                moviesAdapter.setMovies(it)
-                binding.progressBar.visibility = View.INVISIBLE
+            Log.d(tag, "$it")
+            moviesAdapter.setMovies(it)
+            binding.progressBar.visibility = View.INVISIBLE
+            if (it.isEmpty()) {
+                binding.tvEmptyMovies.visibility = View.VISIBLE
+            } else {
+                binding.tvEmptyMovies.visibility = View.INVISIBLE
             }
         }
 

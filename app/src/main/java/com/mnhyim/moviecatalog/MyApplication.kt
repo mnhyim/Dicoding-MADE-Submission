@@ -1,7 +1,9 @@
 package com.mnhyim.moviecatalog
 
 import android.app.Application
-import com.mnhyim.moviecatalog.core.di.*
+import com.mnhyim.core.di.databaseModule
+import com.mnhyim.core.di.networkModule
+import com.mnhyim.core.di.repositoryModule
 import com.mnhyim.moviecatalog.di.useCaseModule
 import com.mnhyim.moviecatalog.di.viewModelModule
 import org.koin.android.ext.koin.androidContext

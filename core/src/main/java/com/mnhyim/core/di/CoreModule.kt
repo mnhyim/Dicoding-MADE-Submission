@@ -1,4 +1,4 @@
-package com.mnhyim.moviecatalog.core.di
+package com.mnhyim.core.di
 
 import androidx.room.Room
 import com.mnhyim.core.data.CatalogRepository

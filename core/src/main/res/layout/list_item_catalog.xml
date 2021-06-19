@@ -21,6 +21,7 @@
             android:id="@+id/img_list_item"
             android:layout_width="96dp"
             android:layout_height="144dp"
+            android:contentDescription="@string/catalog_image_desc"
             android:scaleType="centerCrop"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"

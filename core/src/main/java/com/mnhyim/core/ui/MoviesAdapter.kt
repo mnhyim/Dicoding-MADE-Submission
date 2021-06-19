@@ -10,7 +10,7 @@ import com.mnhyim.core.domain.model.Movie
 
 class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
 
-    private val TAG: String = this::class.java.simpleName
+    private val tag: String = this::class.java.simpleName
     private val listMovies = ArrayList<Movie>()
     private var onItemClickCallback: OnItemClickCallback? = null
 
@@ -26,7 +26,7 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: Movie) {
             with(binding) {
-                Log.d(TAG, "favoriteStatus: ${movie.title} = ${movie.isFavorite}")
+                Log.d(tag, "favoriteStatus: ${movie.title} = ${movie.isFavorite}")
 
                 tvListName.text = movie.title
                 tvListDate.text = movie.releaseDate
@@ -51,7 +51,7 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
             this.listMovies.addAll(movie)
             notifyDataSetChanged()
         }
-        Log.d(TAG, "setMovies: ${this.listMovies}")
+        Log.d(tag, "setMovies: ${this.listMovies}")
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {

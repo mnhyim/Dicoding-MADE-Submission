@@ -15,7 +15,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailActivity : AppCompatActivity() {
 
-    private val TAG: String = this::class.java.simpleName
+    private val tag: String = this::class.java.simpleName
     private val detailViewModel: DetailViewModel by viewModel()
     private lateinit var binding: ActivityDetailBinding
 
@@ -32,7 +32,7 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val movie = intent.getParcelableExtra<Movie>(EXTRA_ITEM) as Movie
-        Log.d(TAG, "${movie.title} - ${movie.isFavorite}")
+        Log.d(tag, "${movie.title} - ${movie.isFavorite}")
 
         populateMovieDetail(movie)
     }
@@ -43,7 +43,7 @@ class DetailActivity : AppCompatActivity() {
         with(binding) {
             tvDetailName.text = movie.title
             tvDetailRelease.text = movie.releaseDate
-            tvDetailLanguage.text = movie.originalLanguage.toString().uppercase()
+            tvDetailLanguage.text = movie.originalLanguage.uppercase()
             tvDetailScore.text = movie.voteAverage.toString()
             tvDetailDesc.text = movie.overview
             Glide.with(baseContext)
@@ -80,7 +80,7 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    fun setFavoriteButtonIcon(status: Boolean) {
+    private fun setFavoriteButtonIcon(status: Boolean) {
         if (status) {
             binding.fabFavorite.setImageResource(R.drawable.ic_remove)
         } else {
