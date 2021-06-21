@@ -9,7 +9,6 @@ import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "movie", indices = [Index(value = ["id"], unique = true)])
-@Parcelize
 data class MovieEntity(
     @PrimaryKey
     @NonNull
@@ -39,4 +38,4 @@ data class MovieEntity(
 
     @ColumnInfo(name = "isFavorite")
     var isFavorite: Boolean = false
-) : Parcelable
+)

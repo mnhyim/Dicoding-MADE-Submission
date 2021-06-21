@@ -14,6 +14,7 @@ import com.mnhyim.moviecatalog.favorite.di.favoriteModule
 import com.mnhyim.moviecatalog.ui.activities.DetailActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
+import org.koin.core.context.unloadKoinModules
 
 class FavoriteActivity : AppCompatActivity() {
 
@@ -65,5 +66,10 @@ class FavoriteActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unloadKoinModules(favoriteModule)
     }
 }
