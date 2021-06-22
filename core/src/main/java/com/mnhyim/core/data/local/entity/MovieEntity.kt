@@ -1,12 +1,10 @@
 package com.mnhyim.core.data.local.entity
 
-import android.os.Parcelable
 import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "movie", indices = [Index(value = ["id"], unique = true)])
 data class MovieEntity(
