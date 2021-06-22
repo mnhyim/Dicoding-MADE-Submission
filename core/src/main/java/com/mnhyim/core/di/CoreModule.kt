@@ -9,6 +9,8 @@ import com.mnhyim.core.data.remote.api.ApiService
 import com.mnhyim.core.domain.repository.CatalogRepositoryInterface
 import com.mnhyim.core.utils.Constants
 import com.mnhyim.core.utils.Executors
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -18,12 +20,16 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 val databaseModule = module {
+    val passphrase: ByteArray = SQLiteDatabase.getBytes("mnhyim".toCharArray())
+    val factory = SupportFactory(passphrase)
     factory { get<CatalogRoomDatabase>().movieDao() }
     single {
         Room.databaseBuilder(
             androidContext(),
             CatalogRoomDatabase::class.java, "catalog.db"
-        ).fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration()
+            .openHelperFactory(factory)
+            .build()
     }
 }
 
